@@ -41,24 +41,29 @@
             </tbody>
         </table>
 
-        <h2>Add Passenger</h2>
-        <p>This INSERTs to our Passengers table.</p>
+        <h2>Book Passenger</h2>
+        <p>This INSERTs to our Passengers_has_Flights table.</p>
         <form>
-            <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" name="firstName">
-            <br>
-            <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" name="lastName">
+            <label for="passengerID">Passenger:</label>
+            <select id="passengerID" name="passengerID">
+                <option value="">Select a Passenger</option>
+                <option value="Super Man">Super Man</option>
+                <option value="Spider Man">Spider Man</option>
+                <option value="Wonder Woman">Wonder Woman</option>
+                <option value="Black Widow">Black Widow</option>
+                <option value="Iron Man">Iron Man</option>
+            </select>   
             <br>
             <label for="flightID">Flight:</label>
             <select id="flightID" name="flightID">
+                <option value="">Select a Flight</option>
                 <option value="1690">1690</option>
                 <option value="1456">1456</option>
                 <option value="1563">1563</option>
                 <option value="1234">1234</option>
             </select>   
             <br>
-            <button type="submit">Add Passenger</button>
+            <button type="submit">Book Passenger</button>
         </form>
         <br>
         <a href="index.html">Home</a>

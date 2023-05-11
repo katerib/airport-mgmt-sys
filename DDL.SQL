@@ -1,3 +1,5 @@
+-- DATA DEFINITION QUERIES with sample Insert statements
+
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
