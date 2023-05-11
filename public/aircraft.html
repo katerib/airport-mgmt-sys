@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aircrafts Information</title>
+    </head>
+    <body>
+        <h1>Aircrafts</h1>
+        <p>This SELECTs from our Aircrafts Table</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aircraft ID</th>
+                    <th>Maximum passengers</th>
+                    <th>Airline company</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>100</td>
+                    <td>Delta</td>
+                    <td>
+                        <button type="submit">Edit</button>
+                        <button type="submit">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>125</td>
+                    <td>American</td>
+                    <td>
+                        <button type="submit">Edit</button>
+                        <button type="submit">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>225</td>
+                    <td>United</td>
+                    <td>
+                        <button type="submit">Edit</button>
+                        <button type="submit">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>250</td>
+                    <td>Delta</td>
+                    <td>
+                        <button type="submit">Edit</button>
+                        <button type="submit">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Add Aircraft</h2>
+
+        <p>This INSERTs to our Aircrafts table.</p>
+        <form>
+            <label for="airlinecompany">Airline Company:</label>
+            <input type="text" id="airlinecompany" name="airlinecompany">
+            <br>
+            <label for="maxpassengers">Maximum passenger capacity:</label>
+            <input id="number" type="number" />
+            <br>
+            <button type="submit">Add Aircraft</button>
+        </form>
+        <br>
+        <a href="index.html">Home</a>
+    </body>
+</html>
