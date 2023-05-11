@@ -25,6 +25,9 @@ INSERT INTO Passengers_has_Flights(passengerID, flightID) VALUES
 -- DATA MANIPULATION QUERIES FOR Terminals
 -- Select All Flights
 SELECT * FROM Terminals;
+INSERT INTO Gates(gateName, terminalID) VALUES
+(:gatename, :terminalID);
+
 
 -- DATA MANIPULATION QUERIES FOR Gates
 -- Select All Flights
