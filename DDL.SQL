@@ -44,8 +44,8 @@ CREATE OR REPLACE TABLE Aircrafts (
 CREATE OR REPLACE TABLE Flights (
     flightID int(11) AUTO_INCREMENT NOT NULL UNIQUE,
     flightNumber int(11) NOT NULL UNIQUE,
-    aircraftID int(11) NOT NULL,
     gateID int(11),
+    aircraftID int(11) NOT NULL,
     numPassengers int(11) NOT NULL,
     PRIMARY KEY (flightID),
     FOREIGN KEY (aircraftID) REFERENCES Aircrafts(aircraftID),

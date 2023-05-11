@@ -5,9 +5,9 @@
     </head>
     <body>
         <h1>Passengers</h1>
-        <h2>All Registered Passengers</h2>
-        <p>This page displays all passengers registered at the airport, even if they are not currently booked for a flight.</p>
-        <p>This SELECTs from our Passengers table.</p>
+        <h2>Booked Passengers</h2>
+        <p>This page displays only the passengers that are currently booked for a flight.</p>
+        <p>This SELECTs from our Passengers_has_Flights table.</p>
         <table>
             <thead>
                 <tr>
@@ -18,36 +18,6 @@
                 </tr>
             </thead>
             <tbody>
-                <tr> 
-                    <td>1</td>
-                    <td>Super</td>
-                    <td>Man</td>
-                    <td></td>
-                    <td>
-                        <button type="submit">Edit</button>
-                        <button type="submit">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Spider</td>
-                    <td>Man</td>
-                    <td></td>
-                    <td>
-                        <button type="submit">Edit</button>
-                        <button type="submit">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Wonder</td>
-                    <td>Woman</td>
-                    <td></td>
-                    <td>
-                        <button type="submit">Edit</button>
-                        <button type="submit">Delete</button>
-                    </td>
-                </tr>
                 <tr>
                     <td>4</td>
                     <td>Black</td>
@@ -86,7 +56,7 @@
                 <option value="1456">1456</option>
                 <option value="1563">1563</option>
                 <option value="1234">1234</option>
-            </select>            
+            </select>   
             <br>
             <button type="submit">Add Passenger</button>
         </form>
