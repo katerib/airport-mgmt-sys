@@ -1,0 +1,23 @@
+{
+  "name": "airport-mgmt-sys",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/katerib/airport-mgmt-sys.git"
+  },
+  "author": "Kateri Boink and Rajan Patel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/katerib/airport-mgmt-sys/issues"
+  },
+  "homepage": "https://github.com/katerib/airport-mgmt-sys#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "forever": "^4.0.3"
+  }
+}
