@@ -22,8 +22,8 @@ CREATE OR REPLACE TABLE Terminals (
 CREATE OR REPLACE TABLE Gates (
     gateID int(11) AUTO_INCREMENT NOT NULL UNIQUE,
     terminalID int(11) NOT NULL,
-    gateName varchar(255) NOT NULL,
-    isOpen tinyint(1) NOT NULL,
+    gateName varchar(255) NOT NULL UNIQUE,
+    isOpen tinyint(1) NOT NULL DEFAULT 1,
     flightID int(11),
     flightArrivalTime datetime,
     flightDepartureTime datetime,
@@ -71,8 +71,8 @@ CREATE OR REPLACE TABLE Passengers_has_Flights (
     passengerID int(11) NOT NULL,
     flightID int(11) NOT NULL,
     PRIMARY KEY (passengerID, flightID),
-    FOREIGN KEY (passengerID) REFERENCES Passengers(passengerID),
-    FOREIGN KEY (flightID) REFERENCES Flights(flightID)
+    FOREIGN KEY (passengerID) REFERENCES Passengers(passengerID) ON DELETE CASCADE,
+    FOREIGN KEY (flightID) REFERENCES Flights(flightID) ON DELETE CASCADE
 );
 
 -- -----------------------------------------------------
