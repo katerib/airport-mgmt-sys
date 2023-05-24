@@ -1,0 +1,33 @@
+<p>HI</p>
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.terminalID}}</td>
+            <td>{{this.terminalName}}</td>
+            <td>{{this.numGates}}</td>
+            <td>{{this.numOpenGates}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<a href='/'>Home</a>
