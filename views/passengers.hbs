@@ -1,0 +1,37 @@
+<h1>Passengers</h1>
+<p>This SELECTs from our Passengers Table</p>
+{{!-- Create a table --}}
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr>
+            <td>{{this.passengerID}} </td>
+            <td>{{this.firstName}} </td>
+            <td>{{this.lastName}} </td>
+            <td>{{this.flightID}} </td>
+            <td><button>Edit</button></td>
+            <td><button>Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<a href='/'>Home</a>

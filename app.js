@@ -3,9 +3,12 @@
 */
 
 // Express
-const express = require('express');
-const app = express();
-PORT = 9336;
+var express = require('express');
+var app = express();
+app.use(express.json())
+app.use(express.urlencoded({extended: true}))
+
+PORT = 9136;
 
 // Database
 const db = require('./database/db-connector');
@@ -15,6 +18,10 @@ const { engine } = require('express-handlebars');
 const exphbs = require('express-handlebars');     // Import express-handlebars
 app.engine('.hbs', engine({extname: ".hbs"}));  // Create an instance of the handlebars engine to process templates
 app.set('view engine', '.hbs');                 // Tell express to use the handlebars engine whenever it encounters a *.hbs file.
+
+
+// Static Files
+app.use(express.static('public'));
 
 /*
     ROUTES
@@ -37,6 +44,39 @@ app.get('/terminals', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+
+//Creates new terminal
+app.post('/add-terminal-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    //console.log(data)
+    console.log(`'${data['input-terminalName']}', ${data['input-numGates']}, ${data['input-numGates']})`)
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Terminals (terminalName, numGates, numOpenGates) VALUES ('${data['input-terminalName']}', ${data['input-numGates']}, ${data['input-numGates']})`;
+    db.pool.query(query1, function(error, rows, fields){
+    
+            // Check to see if there was an error
+        if (error) {
+    
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+    
+            // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
+            // presents it on the screen
+            else
+            {
+                res.redirect('/terminals');
+            }
+        })
+    })
+
+
+
+
+
+
 //gets Gates page
 app.get('/gates', function(req, res)
     {  
@@ -48,6 +88,30 @@ app.get('/gates', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+//gets Passengers page
+app.get('/passengers', function(req, res)
+    {  
+        let query1 = "SELECT * FROM Passengers;";               // Define our query
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            res.render('passengers', {data: rows});                  // Render the index.hbs file, and also send the renderer
+        })                                                      // an object where 'data' is equal to the 'rows' we
+    });                                                         // received back from the query
+
+
+//gets aircrafts page
+app.get('/aircraft', function(req, res)
+    {  
+        let query1 = "SELECT * FROM Aircrafts;";               // Define our query
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            res.render('aircraft', {data: rows});                  // Render the index.hbs file, and also send the renderer
+        })                                                      // an object where 'data' is equal to the 'rows' we
+    });                                                         // received back from the query
+
+    
 //gets Flights page
 app.get('/flights', function(req, res)
     {  
@@ -59,7 +123,15 @@ app.get('/flights', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+//gets Active Passengers page
+app.get('/active-passengers', function(req, res)
+    {  
+        let query1 = "SELECT * FROM Passengers_has_Flights;";               // Define our query
 
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+            res.render('active-passengers', {data: rows});      // Render the index.hbs file, and also send the renderer
+        })                                                      // an object where 'data' is equal to the 'rows' we
+    });                                                         // received back from the query
 
 
 

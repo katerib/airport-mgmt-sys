@@ -1,4 +1,5 @@
-<p>HI</p>
+<h1>Terminals</h1>
+<p>This SELECTs from our Terminals Table</p>
 {{!-- Create a table --}}
 <table>
 
@@ -22,12 +23,27 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
-            <td>{{this.terminalID}}</td>
-            <td>{{this.terminalName}}</td>
-            <td>{{this.numGates}}</td>
-            <td>{{this.numOpenGates}}</td>
+            <td>{{this.terminalID}} </td>
+            <td>{{this.terminalName}} </td>
+            <td>{{this.numGates}} </td>
+            <td>{{this.numOpenGates}} </td>
+            <td><button>Edit</button></td>
+            <td><button>Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+<h2>Add a terminal</h2>
+<p>Please entry terminal information to add a terminal</p>
+<form id="add-terminal-form" method="POST" action="/add-terminal-form">
+    <label for="input-terminalName">Terminal Name: </label>
+    <input type="text" name="input-terminalName" id="input-terminalName">
+    
+    <label for="input-numGates">Number of Gates: </label>
+    <input type="number" name="input-numGates" id="input-numGates">
+
+    <button type="submit">Add Terminal</button>
+</form>
+
 <a href='/'>Home</a>

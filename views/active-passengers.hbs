@@ -1,0 +1,38 @@
+<h1>Booked Passengers</h1>
+<p>This page displays only the passengers that are currently booked for a flight.</p>
+<p>This SELECTs from our Passengers_has_Flights table.</p>
+{{!-- Create a table --}}
+
+<table>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        
+        <tr>
+            <td>{{this.[passengerID (FK)]}} </td>
+            <td>{{this.[flightID (FK)]}} </td>
+            <td><button>Edit</button></td>
+            <td><button>Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<a href='/'>Home</a>
