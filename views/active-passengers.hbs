@@ -34,5 +34,21 @@
         {{/each}}
     </tbody>
 </table>
-
+<h2>Book Passenger</h2>
+<p>This INSERTs to our Passengers_has_Flights table.</p>
+<form id="add-bookedPassenger-form" method="POST" action="/add-bookedPassenger-form">
+    <select name="input-passenger" id="input-passenger">
+        <option value="">Select a Passenger</option>
+            {{#each passengers}}
+            <option value={{this.passengerID}}>{{this.firstName}} {{this.lastName}}</option>
+            {{/each}}
+    </select>
+    <select name="input-flightNum" id="input-flightNum">
+        <option value="">Select a flight</option>
+            {{#each flights}}
+            <option value={{this.flightID}}>{{this.flightNumber}}</option>
+            {{/each}}
+    </select>
+    <button type="submit">Book Passenger</button>
+</form>
 <a href='/'>Home</a>

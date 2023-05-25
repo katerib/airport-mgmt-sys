@@ -8,7 +8,7 @@ var app = express();
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-PORT = 9136;
+PORT = 9126;
 
 // Database
 const db = require('./database/db-connector');
@@ -40,7 +40,7 @@ app.get('/terminals', function(req, res)
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('terminals', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            res.render('terminals', {data: rows});                  // Render the terminals.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
@@ -49,10 +49,8 @@ app.get('/terminals', function(req, res)
 app.post('/add-terminal-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-    //console.log(data)
-    console.log(`'${data['input-terminalName']}', ${data['input-numGates']}, ${data['input-numGates']})`)
     // Create the query and run it on the database
-    query1 = `INSERT INTO Terminals (terminalName, numGates, numOpenGates) VALUES ('${data['input-terminalName']}', ${data['input-numGates']}, ${data['input-numGates']})`;
+    query1 = `INSERT INTO Terminals (terminalName, numGates, numOpenGates) VALUES ('${data['input-terminalName']}', ${data['input-numGates']}, ${data['input-numGates']});`;
     db.pool.query(query1, function(error, rows, fields){
     
             // Check to see if there was an error
@@ -63,8 +61,6 @@ app.post('/add-terminal-form', function(req, res){
                 res.sendStatus(400);
             }
     
-            // If there was no error, we redirect back to our root route, which automatically runs the SELECT * FROM bsg_people and
-            // presents it on the screen
             else
             {
                 res.redirect('/terminals');
@@ -84,7 +80,7 @@ app.get('/gates', function(req, res)
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('gates', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            res.render('gates', {data: rows});                  // Render the gates.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
@@ -95,7 +91,7 @@ app.get('/passengers', function(req, res)
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('passengers', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            res.render('passengers', {data: rows});                  // Render the passenger.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
@@ -107,7 +103,7 @@ app.get('/aircraft', function(req, res)
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('aircraft', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            res.render('aircraft', {data: rows});                  // Render the aircraft.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
@@ -119,7 +115,7 @@ app.get('/flights', function(req, res)
 
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
 
-            res.render('flights', {data: rows});                  // Render the index.hbs file, and also send the renderer
+            res.render('flights', {data: rows});                  // Render the flights.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
@@ -127,12 +123,44 @@ app.get('/flights', function(req, res)
 app.get('/active-passengers', function(req, res)
     {  
         let query1 = "SELECT * FROM Passengers_has_Flights;";               // Define our query
+        let query2 = "SELECT * FROM Passengers;";   // multiple queries taken to fill the drop down options in booked passengers page
+        let query3 = "SELECT * FROM Flights;";
+        db.pool.query(query1, function(error, rows, fields){
+            let booked = rows;
+            db.pool.query(query2, (error, rows, fields) => {
+                let passengers = rows;
+                db.pool.query(query3, (err, rows, fields)=>{
+                    let flights = rows;
+                    return res.render('active-passengers', {data: booked, passengers: passengers, flights: flights});
+                })   
+        })                                                      
+    });           
+})      
 
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
-            res.render('active-passengers', {data: rows});      // Render the index.hbs file, and also send the renderer
-        })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query
 
+//Adds a new booked passenger
+app.post('/add-bookedPassenger-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    query1 = `INSERT INTO \`Passengers_has_Flights\`(\`passengerID (FK)\`, \`flightID (FK)\`) VALUES (${data['input-passenger']}, ${data['input-flightNum']})`;
+    db.pool.query(query1, function(error, rows, fields){
+    
+            // Check to see if there was an error
+        if (error) {
+    
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+    
+            else
+            {
+                res.redirect('/active-passengers');
+            }
+        })
+    })
 
 
 /*
