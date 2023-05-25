@@ -83,8 +83,7 @@ app.delete('/delete-terminal-ajax/', function(req,res,next){
             res.sendStatus(400);
             } else {
                 res.sendStatus(204);
-            }
-                
+            }     
 })});
 
 
@@ -160,7 +159,7 @@ app.post('/add-bookedPassenger-form', function(req, res){
     let data = req.body;
     
     // Create the query and run it on the database
-    query1 = `INSERT INTO \`Passengers_has_Flights\`(\`passengerID (FK)\`, \`flightID (FK)\`) VALUES (${data['input-passenger']}, ${data['input-flightNum']})`;
+    query1 = `INSERT INTO \`Passengers_has_Flights\`(\`passengerID\`, \`flightID\`) VALUES (${data['input-passenger']}, ${data['input-flightNum']})`;
     db.pool.query(query1, function(error, rows, fields){
     
             // Check to see if there was an error
@@ -177,6 +176,23 @@ app.post('/add-bookedPassenger-form', function(req, res){
             }
         })
     })
+
+app.delete('/delete-bookedPassenger-ajax/', function(req,res,next){
+    let data = req.body;
+    let passengerID = parseInt(data.passengerID);
+    let deleteBookedPassenger = `DELETE FROM Passengers_has_Flights WHERE passengerID = ?`;
+    
+        // Run the 1st query
+        db.pool.query(deleteBookedPassenger, [passengerID], function(error, rows, fields){
+            if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }     
+})});
 
 
 /*
