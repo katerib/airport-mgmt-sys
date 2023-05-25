@@ -69,7 +69,23 @@ app.post('/add-terminal-form', function(req, res){
     })
 
 
+app.delete('/delete-terminal-ajax/', function(req,res,next){
+    let data = req.body;
+    let terminalID = parseInt(data.terminalID);
+    let deleteTerminal = `DELETE FROM Terminals WHERE terminalID = ?`;
+    
+        // Run the 1st query
+        db.pool.query(deleteTerminal, [terminalID], function(error, rows, fields){
+            if (error) {
 
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }
+                
+})});
 
 
 

@@ -28,11 +28,12 @@
             <td>{{this.numGates}} </td>
             <td>{{this.numOpenGates}} </td>
             <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
+            <td><button class="delete-button" onclick="deleteTerminal({{this.terminalID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_terminal.js"></script>
 
 <h2>Add a terminal</h2>
 <p>Please entry terminal information to add a terminal</p>
