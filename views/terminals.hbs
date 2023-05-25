@@ -27,7 +27,6 @@
             <td>{{this.terminalName}} </td>
             <td>{{this.numGates}} </td>
             <td>{{this.numOpenGates}} </td>
-            <td><button>Edit</button></td>
             <td><button class="delete-button" onclick="deleteTerminal({{this.terminalID}})">Delete</button></td>
         </tr>
         {{/each}}
@@ -46,5 +45,25 @@
 
     <button type="submit">Add Terminal</button>
 </form>
+
+<h2>Updating A Terminal</h2>
+<p>To update a specific terminal select it from the drop down on the left.</p>
+<form id="update-person-form-ajax">
+
+    <label for="input-terminalName">Terminal name: </label>
+    <select name="input-terminalName" id="terminal-select">
+        <option value="terminal-select-blank">Select a Terminal</option>
+        {{#each data}}
+        <option value="{{this.terminalID}}">{{this.terminalName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-numGates">Number of Gates: </label>
+    <input type="number" name="input-numGates" id="input-numGates">
+    <input type="submit" value="Update Terminal">
+
+</form>
+
+<script src="./js/update_person.js"></script>
 
 <a href='/'>Home</a>
