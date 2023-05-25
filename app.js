@@ -177,23 +177,23 @@ app.post('/add-bookedPassenger-form', function(req, res){
         })
     })
 
-app.delete('/delete-bookedPassenger-ajax/', function(req,res,next){
+app.delete('/delete-bookedPassenger-ajax/', function(req, res, next) {
     let data = req.body;
     let passengerID = parseInt(data.passengerID);
     let deleteBookedPassenger = `DELETE FROM Passengers_has_Flights WHERE passengerID = ?`;
     
-        // Run the 1st query
-        db.pool.query(deleteBookedPassenger, [passengerID], function(error, rows, fields){
-            if (error) {
-
+    // Run the query
+    db.pool.query(deleteBookedPassenger, [passengerID], function(error, rows, fields) {
+        if (error) {
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
-            } else {
-                res.sendStatus(204);
-            }     
-})});
-
+        } else {
+            res.sendStatus(204);
+        }
+    });
+});
+    
 
 /*
     LISTENER
