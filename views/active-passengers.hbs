@@ -26,14 +26,17 @@
         {{#each data}}
         
         <tr>
-            <td>{{this.[passengerID (FK)]}} </td>
-            <td>{{this.[flightID (FK)]}} </td>
+            <td>{{this.passengerID}} </td>
+            <td>{{this.flightID}} </td>
             <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
-        </tr>
+            <td><button class="delete-button" onclick="deleteBookedPassenger({{this.passengerID}})">Delete</button></td>
+         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_bookedPassenger.js"></script>
+
+
 <h2>Book Passenger</h2>
 <p>This INSERTs to our Passengers_has_Flights table.</p>
 <form id="add-bookedPassenger-form" method="POST" action="/add-bookedPassenger-form">
