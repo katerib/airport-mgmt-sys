@@ -47,21 +47,26 @@
 </form>
 
 <h2>Updating A Terminal</h2>
-<p>To update a specific terminal select it from the drop down on the left.</p>
+<p>To update a specific terminal, select it from the drop-down on the left and provide the updated information.</p>
 <form id="update-terminal-form-ajax">
-
-    <label for="input-terminalName">Terminal name: </label>
-    <select name="input-terminalName" id="terminal-select">
+    <label for="terminal-select">Select a Terminal:</label>
+    <select name="terminal-select" id="terminal-select">
         <option value="terminal-select-blank">Select a Terminal</option>
         {{#each data}}
-        <option value="{{this.terminalID}}">{{this.terminalName}}</option>
+            <option value="{{this.terminalID}}">{{this.terminalName}}</option>
         {{/each}}
     </select>
 
-    <label for="input-numGates">Number of Gates: </label>
-    <input type="number" name="input-numGates" id="input-numGates">
-    <input type="submit" value="Update Terminal">
+    <label for="input-terminalName-update">Terminal Name:</label>
+    <input type="text" name="input-terminalName-update" id="input-terminalName-update">
 
+    <label for="input-numGates-update">Number of Gates:</label>
+    <input type="number" name="input-numGates-update" id="input-numGates-update">
+
+    <label for="input-numOpenGates-update">Number of Open Gates:</label>
+    <input type="number" name="input-numOpenGates-update" id="input-numOpenGates-update">
+
+    <button type="submit">Update Terminal</button>
 </form>
 
 <script src="./js/update_terminal.js"></script>

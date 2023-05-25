@@ -86,7 +86,25 @@ app.delete('/delete-terminal-ajax/', function(req,res,next){
             }     
 })});
 
+app.put('/update-terminal-ajax', function(req,res,next){
+    let data = req.body;
 
+    let terminalID = parseInt(data.terminalID);
+    let terminalName = data.terminalName;
+    let numGates = parseInt(data.numGates);
+    let numOpenGates = parseInt(data.numOpenGates);
+
+    let updateTerminal = `UPDATE Terminals SET terminalName = ?, numGates = ?, numOpenGates = ? WHERE terminalID = ?`;
+
+    db.pool.query(updateTerminal, [terminalName, numGates, numOpenGates, terminalID], function (error, rows, fields) {
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(200);
+        }
+})});
 
 //gets Gates page
 app.get('/gates', function(req, res)
