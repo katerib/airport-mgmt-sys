@@ -28,7 +28,6 @@
         <tr>
             <td>{{this.passengerID}} </td>
             <td>{{this.flightID}} </td>
-            <td><button>Edit</button></td>
             <td><button class="delete-button" onclick="deleteBookedPassenger({{this.passengerID}})">Delete</button></td>
          </tr>
         {{/each}}
@@ -54,4 +53,27 @@
     </select>
     <button type="submit">Book Passenger</button>
 </form>
+
+<h2>Update a Booked Passenger</h2>
+<p>To update a specific booked passenger, select the passenger from the drop-down list and provide the updated flight ID.</p>
+<form id="update-passenger-form-ajax">
+    <label for="passenger-select">Select a Passenger:</label>
+    <select name="passenger-select" id="passenger-select">
+        <option value="passenger-select-blank">Select a Passenger</option>
+        {{#each passengers}}
+            <option value="{{this.passengerID}}">{{this.firstName}} {{this.lastName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-flightID-update">Flight ID:</label>
+    <select name="input-flightID-update" id="input-flightID-update">
+        <option value="">None</option>
+        {{#each flights}}
+            <option value="{{this.flightID}}">{{this.flightID}}</option>
+        {{/each}}
+    </select>
+</form>
+
+<script src="./js/update_bookedPassenger.js"></script>
+
 <a href='/'>Home</a>

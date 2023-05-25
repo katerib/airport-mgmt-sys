@@ -212,6 +212,24 @@ app.delete('/delete-bookedPassenger-ajax/', function(req, res, next) {
     });
 });
     
+app.put('/update-bookedPassenger-ajax', function(req,res,next){
+    let data = req.body;
+
+    let passengerID = parseInt(data.passengerID);
+    let flightID = parseInt(data.flightID);
+
+
+    let updateBookedPassenger = `UPDATE Passengers_has_Flights SET flightID = ? WHERE passengerID = ?`;
+
+    db.pool.query(updateBookedPassenger, [flightID, passengerID], function (error, rows, fields) {
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(200);
+        }
+})});
 
 /*
     LISTENER
