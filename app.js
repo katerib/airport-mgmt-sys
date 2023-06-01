@@ -138,10 +138,14 @@ app.delete('/delete-gate-ajax/', function(req,res,next){
 app.get('/passengers', function(req, res)
     {  
         let query1 = "SELECT * FROM Passengers;";               // Define our query
-
+        let query2 = "SELECT * FROM Flights;";
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-            res.render('passengers', {data: rows});                  // Render the passenger.hbs file, and also send the renderer
+            let passenger = rows
+            db.pool.query(query2, (error, rows, fields) => {
+                let flights = rows;
+                return res.render('passengers', {data: passenger, flights:flights});
+            })
+                                                                // Render the passenger.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
@@ -162,15 +166,16 @@ app.delete('/delete-passenger-ajax/', function(req,res,next){
             }     
 })});
 
-//Creates new passenger
+//Adds a new passenger
 app.post('/add-passenger-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
+    
     // Create the query and run it on the database
-    query1 = `INSERT INTO Passengers (firstName, lastName) VALUES ('${data['input-firstName']}', ${data['input-lastName']});`;
-    query2 = `SELECT flightID FROM Flights;`;
+    query1 = `INSERT INTO \`Passengers\` (\`firstName\`, \`lastName\`, \`flightID\`) VALUES ('${data['input-firstName']}', '${data['input-lastName']}', ${data['flight-select']})`;
     db.pool.query(query1, function(error, rows, fields){
-        // Check to see if there was an error
+    
+            // Check to see if there was an error
         if (error) {
     
                 // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
@@ -178,20 +183,12 @@ app.post('/add-passenger-form', function(req, res){
                 res.sendStatus(400);
             }
     
-        db.pool.query(query2, function(error, rows, fields) {
-            if (error) {
-                console.log(error);
-                res.sendStatus(400);
+            else
+            {
+                res.redirect('/passengers');
             }
-        
         })
     })
-    let flights = rows.map((row) => row.flightID);
-    res.render('passengers', { flights }); // Pass the flight IDs to the passengers template
-    
-    res.redirect('/passengers');
-
-});
 
 
 //gets aircrafts page

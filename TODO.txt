@@ -18,7 +18,7 @@ AIRCRFAFTS
 [FIXED] bug: maxPassengers displaying company ; company displaying maxPassengers
 
 PASSENGERS
-[-] implement add --> need to populate dropdown with flightID FK
+[X] implement add --> need to populate dropdown with flightID FK
 [-] implement delete
 
 BOOKED PASSENGERS

@@ -28,7 +28,6 @@
             <td>{{this.lastName}} </td>
             <td>{{this.flightID}} </td>
             <td><button class="delete-button" onclick="deletePassenger({{this.passengerID}})">Delete</button></td>
-
         </tr>
         {{/each}}
     </tbody>
@@ -44,11 +43,11 @@
     <label for="input-lastName">Last Name: </label>
     <input type="text" name="input-lastName" id="input-lastName">
 
-    <label for="flight-select">Select a Flight:</label>
+    <label for="flight-select">Select a Flight ID:</label>
     <select name="flight-select" id="flight-select">
-        <option value="flight-select-blank">Select a Flight</option>
+        <option value=Null>No Flight booked Yet</option>
         {{#each flights}}
-            <option value="{{this.flightID}}">{{this.flightID}}</option>
+            <option value={{this.flightID}}>{{this.flightID}}</option>
         {{/each}}
     </select>
 
