@@ -251,13 +251,21 @@ app.delete('/delete-aircraft-ajax/', function(req,res,next){
 app.get('/flights', function(req, res)
     {  
         let query1 = "SELECT * FROM Flights;";               // Define our query
-
+        let query2 = "SELECT * FROM Gates;";  
+        let query3 = "SELECT * FROM Aircrafts;"
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
+            let flights = rows
+            db.pool.query(query2, (error, rows, fields) => {
+                let gates = rows;
+                db.pool.query(query3, (error, rows, fields) => {
+                    let aircrafts = rows;
+            return res.render('flights', {data: flights, gates:gates, aircrafts:aircrafts});                  // Render the flights.hbs file, and also send the renderer
+            })                                                      // an object where 'data' is equal to the 'rows' we
+        })
+    })
+});                                                         // received back from the query
 
-            res.render('flights', {data: rows});                  // Render the flights.hbs file, and also send the renderer
-        })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query
-
+// Deletes flight info
 app.delete('/delete-flight-ajax/', function(req,res,next){
     let data = req.body;
     let flightID = parseInt(data.flightID);
@@ -275,6 +283,30 @@ app.delete('/delete-flight-ajax/', function(req,res,next){
             }     
 })});
     
+//adds flights 
+app.post('/add-flight-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    query1 = `INSERT INTO \`Flights\` (\`flightNumber\`, \`gateID\`, \`aircraftID\`, \`numPassengers\`) VALUES (${data['input-flight-num']}, ${data['gate-select']}, ${data['aircraft-select']},${data['input-passenger-num']})`;
+    db.pool.query(query1, function(error, rows, fields){
+    
+            // Check to see if there was an error
+        if (error) {
+    
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+    
+            else
+            {
+                res.redirect('/flights');
+            }
+        })
+    })
+
 //gets Active Passengers page
 app.get('/active-passengers', function(req, res)
     {  

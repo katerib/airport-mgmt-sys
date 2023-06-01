@@ -23,18 +23,44 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
         <tr>
-            <td>{{this.[gateID (FK)]}} </td>
-            <td>{{this.[aircraftID (FK)]}} </td>
             <td>{{this.flightID}} </td>
             <td>{{this.flightNumber}} </td>
+            <td>{{this.gateID}} </td>
+            <td>{{this.aircraftID}} </td>          
             <td>{{this.numPassengers}} </td>
-            
-            <td><button>Edit</button></td>
             <td><button class="delete-button" onclick="deleteFlight({{this.flightID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
 <script src="./js/delete_flight.js"></script>
+
+
+<h2>Add a flight</h2>
+<p>Please entry flight information to add a flight</p>
+<form id="add-flight-form" method="POST" action="/add-flight-form">
+    <label for="input-flight-num">Flight Number: </label>
+    <input type="number" name="input-flight-num" id="input-flight-num">
+    
+    <label for="input-passenger-num">number of passengers: </label>
+    <input type="number" name="input-passenger-num" id="input-passenger-num">
+
+    <label for="gate-select">Select a Gate ID:</label>
+    <select name="gate-select" id="gate-select">
+        <option value=Null>No gate booked Yet</option>
+        {{#each gates}}
+            <option value={{this.gateID}}>{{this.gateID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="aircraft-select">Select a aircraft ID:</label>
+    <select name="aircraft-select" id="aircraft-select">
+        {{#each aircrafts}}
+            <option value={{this.aircraftID}}>{{this.aircraftID}}</option>
+        {{/each}}
+    </select>
+
+    <button type="submit">Add Flight</button>
+</form>
 
 <a href='/'>Home</a>

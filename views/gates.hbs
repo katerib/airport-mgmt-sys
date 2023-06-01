@@ -25,14 +25,13 @@
         {{#each data}}
         <tr>
             <td>{{this.gateID}} </td>
-            <td>{{this.[terminalID (FK)]}} </td>
-            <td>{{this.[flightID (FK)]}} </td>
+            <td>{{this.terminalID}} </td>
             <td>{{this.gateName}} </td>
             <td>{{this.isOpen}} </td>
+            <td>{{this.flightID}} </td>
             <td>{{this.flightArrivalTime}} </td>
             <td>{{this.flightDepartureTime}} </td>
             <td><button class="delete-button" onclick="deleteGate({{this.gateID}})">Delete</button></td>
-
         </tr>
         {{/each}}
     </tbody>

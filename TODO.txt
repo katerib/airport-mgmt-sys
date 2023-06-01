@@ -8,7 +8,7 @@ GATES
 [X] implement delete
 
 FLIGHTS
-[-] add flight
+[X] add flight
 [-] delete flight --> ON DELETE CASCADE ; adjust for foreign key constraint
     - maybe set trigger / delimiter to change isOpen in Gates to FALSE when flight is deleted with that gateID?
 
