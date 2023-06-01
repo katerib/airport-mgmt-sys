@@ -14,7 +14,7 @@ CREATE OR REPLACE TABLE Terminals (
     terminalName varchar(255) NOT NULL UNIQUE,
     numGates int(11) NOT NULL,
     numOpenGates int(11) NOT NULL,
-    PRIMARY KEY (terminalID)
+    PRIMARY KEY (terminalID) 
 );
 
 -- Table Structure for: Gates
@@ -28,8 +28,8 @@ CREATE OR REPLACE TABLE Gates (
     flightArrivalTime datetime,
     flightDepartureTime datetime,
     PRIMARY KEY (gateID),
-    FOREIGN KEY (terminalID) REFERENCES Terminals(terminalID),
-    FOREIGN KEY (flightID) REFERENCES Flights(flightID)
+    FOREIGN KEY (terminalID) REFERENCES Terminals(terminalID) ON DELETE CASCADE,
+    FOREIGN KEY (flightID) REFERENCES Flights(flightID) ON DELETE CASCADE
 );
 
 -- Table Structure for: Aircrafts
@@ -50,8 +50,8 @@ CREATE OR REPLACE TABLE Flights (
     aircraftID int(11) NOT NULL,
     numPassengers int(11) NOT NULL,
     PRIMARY KEY (flightID),
-    FOREIGN KEY (aircraftID) REFERENCES Aircrafts(aircraftID),
-    FOREIGN KEY (gateID) REFERENCES Gates(gateID)
+    FOREIGN KEY (aircraftID) REFERENCES Aircrafts(aircraftID) ON DELETE CASCADE,
+    FOREIGN KEY (gateID) REFERENCES Gates(gateID) ON DELETE CASCADE
 );
 
 -- Table Structure for: Passengers
@@ -62,7 +62,7 @@ CREATE OR REPLACE TABLE Passengers (
     lastName varchar(255) NOT NULL,
     flightID int(11),
     PRIMARY KEY (passengerID),
-    FOREIGN KEY (flightID) REFERENCES Flights(flightID)
+    FOREIGN KEY (flightID) REFERENCES Flights(flightID) ON DELETE CASCADE
 );
 
 -- Table Structure for: Passengers_has_Flights
@@ -102,9 +102,9 @@ INSERT INTO Aircrafts (airlineCompany, maxPassengers) VALUES
 
 -- Insert into: Flights
 INSERT INTO Flights (flightNumber, aircraftID, numPassengers, gateID) VALUES
-(1690, 1, 100, 1),
-(1456, 2, 120, 2),
-(1563, 3, 130, 3),
+(1690, 1, 100, 4),
+(1456, 2, 120, 1),
+(1563, 3, 130, 2),
 (1234, 4, 250, 3);
 
 -- Insert into: Passengers
