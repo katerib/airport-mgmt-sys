@@ -145,6 +145,28 @@ app.get('/passengers', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+//Creates new aircraft
+app.post('/add-aircraft-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Aircrafts (airlineCompany, maxPassengers) VALUES ('${data['input-airlineCompany']}', ${data['input-maxPassengers']});`;
+    db.pool.query(query1, function(error, rows, fields){
+    
+        // Check to see if there was an error
+        if (error) {
+    
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+    
+            else
+            {
+                res.redirect('/aircraft');
+            }
+        })
+    })
 
 //gets aircrafts page
 app.get('/aircraft', function(req, res)
@@ -157,6 +179,22 @@ app.get('/aircraft', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+app.delete('/delete-aircraft-ajax/', function(req,res,next){
+    let data = req.body;
+    let aircraftID = parseInt(data.aircraftID);
+    let deleteAircraft = `DELETE FROM Aircrafts WHERE aircraftID = ?`;
+    
+        // Run the 1st query
+        db.pool.query(deleteAircraft, [aircraftID], function(error, rows, fields){
+            if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }     
+})});
     
 //gets Flights page
 app.get('/flights', function(req, res)
@@ -169,6 +207,23 @@ app.get('/flights', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+app.delete('/delete-flight-ajax/', function(req,res,next){
+    let data = req.body;
+    let flightID = parseInt(data.flightID);
+    let deleteFlight = `DELETE FROM Flights WHERE flightID = ?`;
+    
+        // Run the 1st query
+        db.pool.query(deleteFlight, [flightID], function(error, rows, fields){
+            if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }     
+})});
+    
 //gets Active Passengers page
 app.get('/active-passengers', function(req, res)
     {  

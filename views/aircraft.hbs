@@ -26,11 +26,24 @@
             <td>{{this.aircraftID}} </td>
             <td>{{this.airlineCompany}} </td>
             <td>{{this.maxPassengers}} </td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
+            <td><button class="delete-button" onclick="deleteAircraft({{this.aircraftID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_aircraft.js"></script>
+
+
+<h2>Add a aircraft</h2>
+<p>Please entry aircraft information to add a aircraft</p>
+<form id="add-aircraft-form" method="POST" action="/add-aircraft-form">
+    <label for="input-airlineCompany">Airline Company: </label>
+    <input type="text" name="input-airlineCompany" id="input-airlineCompany">
+    
+    <label for="input-maxPassengers">Max passengers: </label>
+    <input type="number" name="input-maxPassengers" id="input-maxPassengers">
+
+    <button type="submit">Add Aircraft</button>
+</form>
 
 <a href='/'>Home</a>
