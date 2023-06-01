@@ -24,8 +24,9 @@
         {{#each data}}
         <tr>
             <td>{{this.aircraftID}} </td>
-            <td>{{this.airlineCompany}} </td>
             <td>{{this.maxPassengers}} </td>
+            <td>{{this.airlineCompany}} </td>
+            
             <td><button class="delete-button" onclick="deleteAircraft({{this.aircraftID}})">Delete</button></td>
         </tr>
         {{/each}}

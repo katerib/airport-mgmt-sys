@@ -15,7 +15,7 @@ FLIGHTS
 AIRCRFAFTS
 [X] implement add
 [X] implement delete
-[ ] bug: maxPassengers displaying company ; company displaying maxPassengers
+[FIXED] bug: maxPassengers displaying company ; company displaying maxPassengers
 
 PASSENGERS
 [-] implement add --> need to populate dropdown with flightID FK
