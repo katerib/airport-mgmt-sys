@@ -1,0 +1,17 @@
+TERMINALS
+[X] implement CRUD
+
+GATES
+[ ] implement CRUD
+
+FLIGHTS
+[ ] implement CRUD
+
+AIRCRFAFTS
+[ ] bug: maxPassengers displaying company ; company displaying maxPassengers
+
+PASSENGERS
+[ ] implement CRUD
+
+BOOKED PASSENGERS
+[ ] implement CRUD
