@@ -27,11 +27,33 @@
             <td>{{this.firstName}} </td>
             <td>{{this.lastName}} </td>
             <td>{{this.flightID}} </td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
+            <td><button class="delete-button" onclick="deletePassenger({{this.passengerID}})">Delete</button></td>
+
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_passenger.js"></script>
+
+<h2>Add a passenger</h2>
+<p>Please enter passenger information to add a passenger</p>
+<form id="add-passenger-form" method="POST" action="/add-passenger-form">
+    <label for="input-firstName">First Name: </label>
+    <input type="text" name="input-firstName" id="input-firstName">
+    
+    <label for="input-lastName">Last Name: </label>
+    <input type="text" name="input-lastName" id="input-lastName">
+
+    <label for="flight-select">Select a Flight:</label>
+    <select name="flight-select" id="flight-select">
+        <option value="flight-select-blank">Select a Flight</option>
+        {{#each flights}}
+            <option value="{{this.flightID}}">{{this.flightID}}</option>
+        {{/each}}
+    </select>
+
+
+    <button type="submit">Add Passenger</button>
+</form>
 
 <a href='/'>Home</a>

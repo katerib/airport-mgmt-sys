@@ -145,6 +145,66 @@ app.get('/passengers', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+app.delete('/delete-passenger-ajax/', function(req,res,next){
+    let data = req.body;
+    let passengerID = parseInt(data.aircraftID);
+    let deletePassenger = `DELETE FROM Passengers WHERE passengerID = ?`;
+    
+        // Run the 1st query
+        db.pool.query(deletePassenger, [passengerID], function(error, rows, fields){
+            if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }     
+})});
+
+//Creates new passenger
+app.post('/add-passenger-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Passengers (firstName, lastName) VALUES ('${data['input-firstName']}', ${data['input-lastName']});`;
+    query2 = `SELECT flightID FROM Flights;`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+    
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+    
+        db.pool.query(query2, function(error, rows, fields) {
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+        
+        })
+    })
+    let flights = rows.map((row) => row.flightID);
+    res.render('passengers', { flights }); // Pass the flight IDs to the passengers template
+    
+    res.redirect('/passengers');
+
+});
+
+
+//gets aircrafts page
+app.get('/aircraft', function(req, res)
+    {  
+        let query1 = "SELECT * FROM Aircrafts;";               // Define our query
+
+        db.pool.query(query1, function(error, rows, fields){    // Execute the query
+
+            res.render('aircraft', {data: rows});                  // Render the aircraft.hbs file, and also send the renderer
+        })                                                      // an object where 'data' is equal to the 'rows' we
+    });                                                         // received back from the query
+
 //Creates new aircraft
 app.post('/add-aircraft-form', function(req, res){
     // Capture the incoming data and parse it back to a JS object
@@ -167,17 +227,6 @@ app.post('/add-aircraft-form', function(req, res){
             }
         })
     })
-
-//gets aircrafts page
-app.get('/aircraft', function(req, res)
-    {  
-        let query1 = "SELECT * FROM Aircrafts;";               // Define our query
-
-        db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-            res.render('aircraft', {data: rows});                  // Render the aircraft.hbs file, and also send the renderer
-        })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query
 
 app.delete('/delete-aircraft-ajax/', function(req,res,next){
     let data = req.body;
