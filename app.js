@@ -196,6 +196,25 @@ app.post('/add-passenger-form', function(req, res){
         })
     })
 
+//updates passenger
+app.put('/update-passenger-form-ajax', function(req,res,next){
+    let data = req.body;
+
+    let passengerID = parseInt(data.passengerID);
+    let firstName = data.firstName;
+    let lastName = data.lastName;
+
+    let updatePassenger = `UPDATE Passengers SET firstName = ?, lastName = ? WHERE passengerID = ?`;
+
+    db.pool.query(updatePassenger, [firstName, lastName, passengerID], function (error, rows, fields) {
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(200);
+        }
+})});
 
 //gets aircrafts page
 app.get('/aircraft', function(req, res)

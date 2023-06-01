@@ -55,4 +55,26 @@
     <button type="submit">Add Passenger</button>
 </form>
 
+<h2>Updating a Passenger</h2>
+<p>To update a specific passenger, select it from the drop-down on the left and provide the updated information.</p>
+<form id="update-passenger-form-ajax">
+    <label for="passenger-select">Select a passenger ID:</label>
+    <select name="passenger-select" id="passenger-select">
+        <option value="passenger-select-blank">Select a Passenger ID</option>
+        {{#each data}}
+            <option value="{{this.passengerID}}">{{this.passengerID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-firstName-update">First Name:</label>
+    <input type="text" name="input-firstName-update" id="input-firstName-update">
+
+    <label for="input-lastName-update">Last Name:</label>
+    <input type="text" name="input-lastName-update" id="input-lastName-update">
+
+    <button type="submit">Update Passenger</button>
+</form>
+
+<script src="./js/update_passenger.js"></script>
+
 <a href='/'>Home</a>

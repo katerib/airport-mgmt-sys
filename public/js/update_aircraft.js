@@ -18,8 +18,6 @@ updateAircraftForm.addEventListener("submit", function (e) {
 
     // Abort if value is null or not a number
     if (isNaN(maxPassengerValue) || airlineCompanyValue===null) {
-        console.log(isNaN(maxPassengerValue))
-        console.log(airlineCompanyValue)
         return alert("Please insert a value for maximum passengers and airlinecompany");
     }
     // Put our data we want to send in a JavaScript object
@@ -42,7 +40,7 @@ updateAircraftForm.addEventListener("submit", function (e) {
             // Refresh the page or perform any other necessary actions
             location.reload();
         } else if (xhttp.readyState == 4 && xhttp.status != 200) {
-            console.log("There was an error updating the booked passenger.");
+            console.log("There was an error updating the aircraft.");
         }
     };
 

@@ -23,7 +23,7 @@ AIRCRFAFTS
 PASSENGERS
 [X] implement add --> need to populate dropdown with flightID FK
 [X] implement delete
-[]  implement update
+[X]  implement update
 
 BOOKED PASSENGERS
 [X] implement add
