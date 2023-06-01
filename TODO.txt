@@ -16,6 +16,7 @@ AIRCRFAFTS
 [X] implement add
 [X] implement delete
 [FIXED] bug: maxPassengers displaying company ; company displaying maxPassengers
+[X] implement update
 
 PASSENGERS
 [X] implement add --> need to populate dropdown with flightID FK

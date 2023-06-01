@@ -31,6 +31,7 @@ updatePassengerForm.addEventListener("submit", function (e) {
             // Booked passenger updated successfully
             console.log("Booked passenger updated successfully");
             // Refresh the page or perform any other necessary actions
+            location.reload();
         } else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error updating the booked passenger.");
         }

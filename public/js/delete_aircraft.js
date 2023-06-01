@@ -13,8 +13,8 @@ function deleteAircraft(aircraftID) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 204) {
 
-            // Add the new data to the table
-            deleteAircraftRow(aircraftID);
+            // refresh data
+            location.reload();
 
         }
         else if (xhttp.readyState == 4 && xhttp.status != 204) {

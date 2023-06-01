@@ -47,4 +47,26 @@
     <button type="submit">Add Aircraft</button>
 </form>
 
+<h2>Updating an Aircraft</h2>
+<p>To update a specific aircraft, select it from the drop-down on the left and provide the updated information.</p>
+<form id="update-aircraft-form-ajax">
+    <label for="aircraft-select">Select a aircraft ID:</label>
+    <select name="aircraft-select" id="aircraft-select">
+        <option value="aircraft-select-blank">Select a aircraft ID</option>
+        {{#each data}}
+            <option value="{{this.aircraftID}}">{{this.aircraftID}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-maxPassenger-update">Maximum amount of Passengers:</label>
+    <input type="number" name="input-maxPassenger-update" id="input-maxPassenger-update">
+
+    <label for="input-airlineCompany-update">Airline Company:</label>
+    <input type="text" name="input-airlineCompany-update" id="input-airlineCompany-update">
+
+    <button type="submit">Update Aircraft</button>
+</form>
+
+<script src="./js/update_aircraft.js"></script>
+
 <a href='/'>Home</a>

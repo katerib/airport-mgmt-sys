@@ -86,6 +86,7 @@ app.delete('/delete-terminal-ajax/', function(req,res,next){
             }     
 })});
 
+//updates terminal
 app.put('/update-terminal-ajax', function(req,res,next){
     let data = req.body;
 
@@ -229,7 +230,7 @@ app.post('/add-aircraft-form', function(req, res){
             }
         })
     })
-
+// Deletes aircraft
 app.delete('/delete-aircraft-ajax/', function(req,res,next){
     let data = req.body;
     let aircraftID = parseInt(data.aircraftID);
@@ -246,7 +247,27 @@ app.delete('/delete-aircraft-ajax/', function(req,res,next){
                 res.sendStatus(204);
             }     
 })});
-    
+
+// Updates Aircraft
+app.put('/update-aircraft-form-ajax', function(req,res,next){
+    let data = req.body;
+
+    let aircraftID = parseInt(data.aircraftID);
+    let maxPassengers = parseInt(data.maxPassengers);
+    let airlineCompany = data.airlineCompany;
+
+    let updateAircraft = `UPDATE Aircrafts SET maxPassengers = ?, airlineCompany = ? WHERE aircraftID = ?`;
+
+    db.pool.query(updateAircraft, [maxPassengers, airlineCompany, aircraftID], function (error, rows, fields) {
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(200);
+        }
+})});
+
 //gets Flights page
 app.get('/flights', function(req, res)
     {  
@@ -366,7 +387,7 @@ app.delete('/delete-bookedPassenger-ajax/', function(req, res, next) {
         }
     });
 });
-    
+// updates booked passenger    
 app.put('/update-bookedPassenger-ajax', function(req,res,next){
     let data = req.body;
 

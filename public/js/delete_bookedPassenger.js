@@ -12,8 +12,8 @@ function deleteBookedPassenger(passengerID) {
     // Tell our AJAX request how to resolve
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 204) {
-            // Add the new data to the table
-            deleteBookedPassengerRow(passengerID);
+            // refresh data
+            location.reload();
         } else if (xhttp.readyState == 4 && xhttp.status != 204) {
             console.log("There was an error with the input.")
         }
