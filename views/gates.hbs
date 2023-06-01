@@ -31,12 +31,24 @@
             <td>{{this.isOpen}} </td>
             <td>{{this.flightArrivalTime}} </td>
             <td>{{this.flightDepartureTime}} </td>
-            <td><button>Edit</button></td>
-            <td><button>Delete</button></td>
+            <td><button class="delete-button" onclick="deleteGate({{this.gateID}})">Delete</button></td>
+
         </tr>
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_gate.js"></script>
 
+<h2>Add a gate</h2>
+<p>Please enter gate information to add a gate to the terminal</p>
+<form id="add-gate-form" method="POST" action="/add-gate-form">
+    <label for="input-gateName">Gate Name: </label>
+    <input type="text" name="input-gateName" id="input-gateName">
+    
+    <label for="input-numGates">Number of Gates: </label>
+    <input type="number" name="input-numGates" id="input-numGates">
+
+    <button type="submit">Add Terminal</button>
+</form>
 
 <a href='/'>Home</a>

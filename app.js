@@ -117,6 +117,23 @@ app.get('/gates', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+app.delete('/delete-gate-ajax/', function(req,res,next){
+    let data = req.body;
+    let gateID = parseInt(data.gateID);
+    let deleteGate = `DELETE FROM Gates WHERE gateID = ?`;
+    
+        // Run the 1st query
+        db.pool.query(deleteGate, [gateID], function(error, rows, fields){
+            if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+            } else {
+                res.sendStatus(204);
+            }     
+})});
+
 //gets Passengers page
 app.get('/passengers', function(req, res)
     {  
