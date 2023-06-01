@@ -149,9 +149,10 @@ app.get('/passengers', function(req, res)
         })                                                      // an object where 'data' is equal to the 'rows' we
     });                                                         // received back from the query
 
+//Deletes passenger
 app.delete('/delete-passenger-ajax/', function(req,res,next){
     let data = req.body;
-    let passengerID = parseInt(data.aircraftID);
+    let passengerID = parseInt(data.passengerID);
     let deletePassenger = `DELETE FROM Passengers WHERE passengerID = ?`;
     
         // Run the 1st query
@@ -162,9 +163,13 @@ app.delete('/delete-passenger-ajax/', function(req,res,next){
             console.log(error);
             res.sendStatus(400);
             } else {
+                
                 res.sendStatus(204);
+
             }     
-})});
+        })
+        
+});
 
 //Adds a new passenger
 app.post('/add-passenger-form', function(req, res){

@@ -31,7 +31,7 @@ function deletePassengerRow(passengerID){
     let table = document.getElementById("Passengers");
     for (let i = 0, row; row = table.rows[i]; i++) {
        if (table.rows[i].getAttribute("data-value") == passengerID) {
-            table.deleteRow(i);
+            table.deletePassengerRow(i);
             break;
        }
     }
