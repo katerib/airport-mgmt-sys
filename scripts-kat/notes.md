@@ -8,6 +8,7 @@ Install forever code:
 
 Start with: `forever app.js`
 
+`$env:DB_PASS="your_password_here"`
 
 ## Styles
 
