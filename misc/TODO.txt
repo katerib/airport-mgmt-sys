@@ -1,0 +1,39 @@
+TERMINALS
+[X] implement add
+[X] implement delete
+[X] implement update
+
+GATES
+[X] implement add
+[X] implement delete
+[]  implement update
+
+FLIGHTS
+[X] add flight
+[-] delete flight --> ON DELETE CASCADE ; adjust for foreign key constraint
+    - maybe set trigger / delimiter to change isOpen in Gates to FALSE when flight is deleted with that gateID?
+[]  implement update  
+
+AIRCRFAFTS
+[X] implement add
+[X] implement delete
+[FIXED] bug: maxPassengers displaying company ; company displaying maxPassengers
+[X] implement update
+
+PASSENGERS
+[X] implement add --> need to populate dropdown with flightID FK
+[X] implement delete
+[X]  implement update
+
+BOOKED PASSENGERS
+[X] implement add
+[X] implement delete
+[X] implement update
+
+
+
+
+----
+[X] done 
+[-] in progress 
+[ ] incomplete
