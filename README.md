@@ -77,7 +77,7 @@ To start the application, use one of two options:
 
 `$ npm start`
 
-2. Start with the forever script:
+2. Start with the [forever](/misc/forever.txt) script:
 
 `$ npm run start-forever`
 
