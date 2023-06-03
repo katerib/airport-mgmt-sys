@@ -1,3 +1,4 @@
 ddl_bu.sql
 npm-debug.log
-db-config.js
+db-config.jsconfig.env
+config.env
