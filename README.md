@@ -89,23 +89,23 @@ The application assumes a MySQL database is set up and accessible. Have a runnin
 
 ## Features
 
-**Terminal Management**: manage airport terminals by adding, updating, and deleting terminals from the system.
+* **Terminal Management**: manage airport terminals by adding, updating, and deleting terminals from the system.
 
-**Gate Management**: efficiently handle airport gates, includes adding new gates, updating gate information, and removing gates. Allows users to view gate status (open/closed) and indicate flights are assigned to specific gates.
+* **Gate Management**: efficiently handle airport gates, includes adding new gates, updating gate information, and removing gates. Allows users to view gate status (open/closed) and indicate flights are assigned to specific gates.
 
-**Flight Management**: manage flights by creating new flight records, updating flight details, and deleting flights when needed. Allows users to attribute flights to specific gates.
+* **Flight Management**: manage flights by creating new flight records, updating flight details, and deleting flights when needed. Allows users to attribute flights to specific gates.
 
-**Passenger Management**: create new passenger records, update passenger details, and remove passengers from the system. 
+* **Passenger Management**: create new passenger records, update passenger details, and remove passengers from the system. 
 
-**Aircraft Management**: create, update, and delete aircraft profiles in the system.
+* **Aircraft Management**: create, update, and delete aircraft profiles in the system.
 
-**Booked Passengers**: track and manage booked passengers, allowing you to associate passengers with specific flights, update passenger-flight associations, and remove passengers from current flights.
+* **Booked Passengers**: track and manage booked passengers, allowing you to associate passengers with specific flights, update passenger-flight associations, and remove passengers from current flights.
 
-**Database integration**: connect to a MySQL/MariaDB database to store and retrieve data, ensuring data persistence and scalability.
+* **Database integration**: connect to a MySQL/MariaDB database to store and retrieve data, ensuring data persistence and scalability.
 
-**Express.js and Handlebars**: build dynamic and responsive web pages with this web application framework and templating engine, respectively.
+* **Express.js and Handlebars**: build dynamic and responsive web pages with this web application framework and templating engine, respectively.
 
-**Forever script**: ensures application stays running continuously in order to provide enhanced reliability and uptime.
+* **Forever script**: ensures application stays running continuously in order to provide enhanced reliability and uptime.
 
 ## License
 
