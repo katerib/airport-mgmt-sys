@@ -1,4 +1,6 @@
-# airport-mgmt-sys
+# Airport Management System
+
+## Flightline
 
 A simple airport management web application built with Node.js and Express. It provides functionality to manage terminals, gates, flights, passengers, aircraft, and active passengers.
 
