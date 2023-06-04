@@ -63,11 +63,11 @@ To set up and run the web app locally, follow these steps:
         database: 'your_database_name',
       };
       ```
-    * Currently, `airport-mgmt-sys/database/db-connector.js` declares DB_PASS as an environment variable in the current shell session. To do the same, use:
-        * Linux/macOS: `export DB_PASS="your_password_here"`
-        * Windows Command Prompt: `set DB_PASS="your_password_here"`
-        * Windows PowerShell: `$env:DB_PASS="your_password_here"`
-    * Otherwise, replace `DB_PASS` with `'your_password'`
+  * Currently, `airport-mgmt-sys/database/db-connector.js` declares DB_PASS as an environment variable in the current shell session. To do the same, use:
+      * Linux/macOS: `export DB_PASS="your_password_here"`
+      * Windows Command Prompt: `set DB_PASS="your_password_here"`
+      * Windows PowerShell: `$env:DB_PASS="your_password_here"`
+  * Otherwise, replace `DB_PASS` with `'your_password'`
 
 ## Usage
 
