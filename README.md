@@ -62,6 +62,7 @@ To set up and run the web app locally, follow these steps:
         password: DB_PASS,
         database: 'your_database_name',
       };
+      ```
       
   * Currently, `airport-mgmt-sys/database/db-connector.js` declares DB_PASS as an environment variable in the current shell session. To do the same, use:
       * Linux/macOS: `export DB_PASS="your_password_here"`
