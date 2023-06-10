@@ -5,11 +5,13 @@
         <table>
             <thead>
                 <tr>
-                    {{#each data.[0]}}
-                    <th>
-                        {{@key}}
-                    </th>
-                    {{/each}}
+                    <th>Gate ID</th>
+                    <th>Terminal ID</th>
+                    <th>Gate Name</th>
+                    <th>Status</th>
+                    <th>Flight ID</th>
+                    <th>Flight Arrival Time</th>
+                    <th>Flight Departure Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,8 +20,13 @@
                     <td>{{this.gateID}} </td>
                     <td>{{this.terminalID}} </td>
                     <td>{{this.gateName}} </td>
-                    <td>{{this.isOpen}} </td>
-                    <td>{{this.flightID}} </td>
+                    <td>
+                        {{#if this.isOpen}}
+                            Open
+                        {{else}}
+                            Occupied
+                        {{/if}}
+                    </td>                    <td>{{this.flightID}} </td>
                     <td>{{this.flightArrivalTime}} </td>
                     <td>{{this.flightDepartureTime}} </td>
                     <td><button class="delete-button" onclick="deleteGate({{this.gateID}})">Delete</button></td>
