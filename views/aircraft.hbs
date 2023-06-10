@@ -1,72 +1,76 @@
-<h1>Aircraft</h1>
-<p>This SELECTs from our Aircraft Table</p>
-{{!-- Create a table --}}
-<table>
+<div class="container">
+    <div class="white-box">
+        <h1>Aircraft</h1>
+        <p>This SELECTs from our Aircraft Table</p>
+        <table>
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.aircraftID}} </td>
+                    <td>{{this.maxPassengers}} </td>
+                    <td>{{this.airlineCompany}} </td>
+                    
+                    <td><button class="delete-button" onclick="deleteAircraft({{this.aircraftID}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_aircraft.js"></script>
+    </div>
+</div>
 
-    {{!-- Header section --}}
-    <thead>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr>
-            <td>{{this.aircraftID}} </td>
-            <td>{{this.maxPassengers}} </td>
-            <td>{{this.airlineCompany}} </td>
+<div class="container">
+    <div class="white-box">
+        <h2>Add a aircraft</h2>
+        <p>Please entry aircraft information to add a aircraft</p>
+        <form id="add-aircraft-form" method="POST" action="/add-aircraft-form">
+            <label for="input-airlineCompany">Airline Company: </label>
+            <input type="text" name="input-airlineCompany" id="input-airlineCompany">
             
-            <td><button class="delete-button" onclick="deleteAircraft({{this.aircraftID}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_aircraft.js"></script>
+            <label for="input-maxPassengers">Max passengers: </label>
+            <input type="number" name="input-maxPassengers" id="input-maxPassengers">
+            <br>
+
+            <button class="button" type="submit">Add Aircraft</button>
+        </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="white-box">
+        <h2>Updating an Aircraft</h2>
+        <p>To update a specific aircraft, select it from the drop-down on the left and provide the updated information.</p>
+        <form id="update-aircraft-form-ajax">
+            <label for="aircraft-select">Select a aircraft ID:</label>
+            <select name="aircraft-select" id="aircraft-select">
+                <option value="aircraft-select-blank">Select a aircraft ID</option>
+                {{#each data}}
+                    <option value="{{this.aircraftID}}">{{this.aircraftID}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <label for="input-maxPassenger-update">Maximum amount of Passengers:</label>
+            <input type="number" name="input-maxPassenger-update" id="input-maxPassenger-update">
+            <br>
+            <label for="input-airlineCompany-update">Airline Company:</label>
+            <input type="text" name="input-airlineCompany-update" id="input-airlineCompany-update">
+            <br>
+            <button class="button" type="submit">Update Aircraft</button>
+        </form>
+        <script src="./js/update_aircraft.js"></script>
+
+    </div>
+</div>
 
 
-<h2>Add a aircraft</h2>
-<p>Please entry aircraft information to add a aircraft</p>
-<form id="add-aircraft-form" method="POST" action="/add-aircraft-form">
-    <label for="input-airlineCompany">Airline Company: </label>
-    <input type="text" name="input-airlineCompany" id="input-airlineCompany">
-    
-    <label for="input-maxPassengers">Max passengers: </label>
-    <input type="number" name="input-maxPassengers" id="input-maxPassengers">
-
-    <button type="submit">Add Aircraft</button>
-</form>
-
-<h2>Updating an Aircraft</h2>
-<p>To update a specific aircraft, select it from the drop-down on the left and provide the updated information.</p>
-<form id="update-aircraft-form-ajax">
-    <label for="aircraft-select">Select a aircraft ID:</label>
-    <select name="aircraft-select" id="aircraft-select">
-        <option value="aircraft-select-blank">Select a aircraft ID</option>
-        {{#each data}}
-            <option value="{{this.aircraftID}}">{{this.aircraftID}}</option>
-        {{/each}}
-    </select>
-
-    <label for="input-maxPassenger-update">Maximum amount of Passengers:</label>
-    <input type="number" name="input-maxPassenger-update" id="input-maxPassenger-update">
-
-    <label for="input-airlineCompany-update">Airline Company:</label>
-    <input type="text" name="input-airlineCompany-update" id="input-airlineCompany-update">
-
-    <button type="submit">Update Aircraft</button>
-</form>
-
-<script src="./js/update_aircraft.js"></script>
-
-<a href='/'>Home</a>
+<a class="nav-button centered-button" href='/'>Return to Home</a>

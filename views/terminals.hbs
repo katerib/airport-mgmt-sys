@@ -1,74 +1,96 @@
-<h1>Terminals</h1>
-<p>This SELECTs from our Terminals Table</p>
-{{!-- Create a table --}}
-<table>
 
-    {{!-- Header section --}}
-    <thead>
+<style>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
+    .white-box {
+        background-color: #F5F5F5;
+        padding: 50px;
+        width: 90%;
+    }
 
-    {{!-- Body section --}}
-    <tbody>
+</style>
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr>
-            <td>{{this.terminalID}} </td>
-            <td>{{this.terminalName}} </td>
-            <td>{{this.numGates}} </td>
-            <td>{{this.numOpenGates}} </td>
-            <td><button class="delete-button" onclick="deleteTerminal({{this.terminalID}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_terminal.js"></script>
+<div class="container">
+    <div class="white-box">
+        <h1>Terminals</h1>
+        <p>This SELECTs from our Terminals Table</p>
+        <table>
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
 
-<h2>Add a terminal</h2>
-<p>Please entry terminal information to add a terminal</p>
-<form id="add-terminal-form" method="POST" action="/add-terminal-form">
-    <label for="input-terminalName">Terminal Name: </label>
-    <input type="text" name="input-terminalName" id="input-terminalName">
-    
-    <label for="input-numGates">Number of Gates: </label>
-    <input type="number" name="input-numGates" id="input-numGates">
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.terminalID}} </td>
+                    <td>{{this.terminalName}} </td>
+                    <td>{{this.numGates}} </td>
+                    <td>{{this.numOpenGates}} </td>
+                    <td><button class="delete-button" onclick="deleteTerminal({{this.terminalID}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_terminal.js"></script>
+    </div>
+</div>
 
-    <button type="submit">Add Terminal</button>
-</form>
+<div class="container">
+    <div class="white-box">
+        <h2>Add a terminal</h2>
+        <p>Please enter terminal information to add a terminal</p>
+        <form id="add-terminal-form" method="POST" action="/add-terminal-form">
+            <label for="input-terminalName">Terminal Name: </label>
+            <input type="text" name="input-terminalName" id="input-terminalName">
+            <br>
 
-<h2>Updating A Terminal</h2>
-<p>To update a specific terminal, select it from the drop-down on the left and provide the updated information.</p>
-<form id="update-terminal-form-ajax">
-    <label for="terminal-select">Select a Terminal:</label>
-    <select name="terminal-select" id="terminal-select">
-        <option value="terminal-select-blank">Select a Terminal</option>
-        {{#each data}}
-            <option value="{{this.terminalID}}">{{this.terminalName}}</option>
-        {{/each}}
-    </select>
+            <label for="input-numGates">Number of Gates: </label>
+            <input type="number" name="input-numGates" id="input-numGates">
+            
+            <br>
 
-    <label for="input-terminalName-update">Terminal Name:</label>
-    <input type="text" name="input-terminalName-update" id="input-terminalName-update">
+            <button class="button" type="submit">Add Terminal</button>
+        </form>
+    </div>
+</div>
 
-    <label for="input-numGates-update">Number of Gates:</label>
-    <input type="number" name="input-numGates-update" id="input-numGates-update">
+<div class="container">
+    <div class="white-box">
+        <h2>Updating A Terminal</h2>
+        <p>To update a specific terminal, select it from the drop-down on the left and provide the updated information.</p>
+        <form id="update-terminal-form-ajax">
+            <label for="terminal-select">Select a Terminal:</label>
+            <select name="terminal-select" id="terminal-select">
+                <option value="terminal-select-blank">Select a Terminal</option>
+                {{#each data}}
+                    <option value="{{this.terminalID}}">{{this.terminalName}}</option>
+                {{/each}}
+            </select>
+            <br>
 
-    <label for="input-numOpenGates-update">Number of Open Gates:</label>
-    <input type="number" name="input-numOpenGates-update" id="input-numOpenGates-update">
+            <label for="input-terminalName-update">Terminal Name:</label>
+            <input type="text" name="input-terminalName-update" id="input-terminalName-update">
+            <br>
 
-    <button type="submit">Update Terminal</button>
-</form>
+            <label for="input-numGates-update">Number of Gates:</label>
+            <input type="number" name="input-numGates-update" id="input-numGates-update">
+            <br>
 
-<script src="./js/update_terminal.js"></script>
+            <label for="input-numOpenGates-update">Number of Open Gates:</label>
+            <input type="number" name="input-numOpenGates-update" id="input-numOpenGates-update">
+            <br>
 
-<a href='/'>Home</a>
+            <button class="button" type="submit">Update Terminal</button>
+        </form>
+
+        <script src="./js/update_terminal.js"></script>
+
+    </div>
+</div>
+
+<a class="nav-button centered-button" href='/'>Return to Home</a>

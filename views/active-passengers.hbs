@@ -1,79 +1,89 @@
-<h1>Booked Passengers</h1>
-<p>This page displays only the passengers that are currently booked for a flight.</p>
-<p>This SELECTs from our Passengers_has_Flights table.</p>
-{{!-- Create a table --}}
+<div class="container">
+    <div class="white-box">
+        <h1>Booked Passengers</h1>
+        <p>This page displays only the passengers that are currently booked for a flight.</p>
+        <p>This SELECTs from our Passengers_has_Flights table.</p>
 
-<table>
+        <table>
+            <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
 
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        
-        {{#each data}}
-        <tr>
-            <td>{{this.passengerID}} </td>
-            <td>{{this.flightID}} </td>
-            <td><button class="delete-button" onclick="deleteBookedPassenger({{this.passengerID}})">Delete</button></td>
-         </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_bookedPassenger.js"></script>
+                
+                {{#each data}}
+                <tr>
+                    <td>{{this.passengerID}} </td>
+                    <td>{{this.flightID}} </td>
+                    <td><button class="delete-button" onclick="deleteBookedPassenger({{this.passengerID}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_bookedPassenger.js"></script>
+    </div>
+</div>
 
 
-<h2>Book Passenger</h2>
-<p>This INSERTs to our Passengers_has_Flights table.</p>
-<form id="add-bookedPassenger-form" method="POST" action="/add-bookedPassenger-form">
-    <select name="input-passenger" id="input-passenger">
-        <option value="">Select a Passenger</option>
-            {{#each passengers}}
-            <option value={{this.passengerID}}>{{this.firstName}} {{this.lastName}}</option>
-            {{/each}}
-    </select>
-    <select name="input-flightNum" id="input-flightNum">
-        <option value="">Select a flight</option>
-            {{#each flights}}
-            <option value={{this.flightID}}>{{this.flightNumber}}</option>
-            {{/each}}
-    </select>
-    <button type="submit">Book Passenger</button>
-</form>
+<div class="container">
+    <div class="white-box">
+        <h2>Book Passenger</h2>
+        <p>This INSERTs to our Passengers_has_Flights table.</p>
+        <form id="add-bookedPassenger-form" method="POST" action="/add-bookedPassenger-form">
+            <select name="input-passenger" id="input-passenger">
+                <option value="">Select a Passenger</option>
+                    {{#each passengers}}
+                    <option value={{this.passengerID}}>{{this.firstName}} {{this.lastName}}</option>
+                    {{/each}}
+            </select>
+            <select name="input-flightNum" id="input-flightNum">
+                <option value="">Select a flight</option>
+                    {{#each flights}}
+                    <option value={{this.flightID}}>{{this.flightNumber}}</option>
+                    {{/each}}
+            </select>
+            <br>
 
-<h2>Update a Booked Passenger</h2>
-<p>To update a specific booked passenger, select the passenger from the drop-down list and provide the updated flight ID.</p>
-<form id="update-passenger-form-ajax">
-    <label for="passenger-select">Select a Passenger:</label>
-    <select name="passenger-select" id="passenger-select">
-        <option value="passenger-select-blank">Select a Passenger</option>
-        {{#each passengers}}
-            <option value="{{this.passengerID}}">{{this.firstName}} {{this.lastName}}</option>
-        {{/each}}
-    </select>
+            <button class="button" type="submit">Book Passenger</button>
+        </form>
+    </div>
+</div>
 
-    <label for="input-flightID-update">Flight ID:</label>
-    <select name="input-flightID-update" id="input-flightID-update">
-        <option value="">None</option>
-        {{#each flights}}
-            <option value="{{this.flightID}}">{{this.flightID}}</option>
-        {{/each}}
-    </select>
-    <button type="submit">Update Booked Passenger</button>
-</form>
+<div class="container">
+    <div class="white-box">
+        <h2>Update a Booked Passenger</h2>
+        <p>To update a specific booked passenger, select the passenger from the drop-down list and provide the updated flight ID.</p>
+        <form id="update-passenger-form-ajax">
+            <label for="passenger-select">Select a Passenger:</label>
+            <select name="passenger-select" id="passenger-select">
+                <option value="passenger-select-blank">Select a Passenger</option>
+                {{#each passengers}}
+                    <option value="{{this.passengerID}}">{{this.firstName}} {{this.lastName}}</option>
+                {{/each}}
+            </select>
 
-<script src="./js/update_bookedPassenger.js"></script>
+            
+            <label for="input-flightID-update">Flight ID:</label>
+            <select name="input-flightID-update" id="input-flightID-update">
+                <option value="">None</option>
+                {{#each flights}}
+                    <option value="{{this.flightID}}">{{this.flightID}}</option>
+                {{/each}}
+            </select>
+            <br>
+            <button class="button" type="submit">Update Booked Passenger</button>
 
-<a href='/'>Home</a>
+        </form>
+        <script src="./js/update_bookedPassenger.js"></script>
+
+    </div>
+</div>
+
+
+<a class="nav-button centered-button" href='/'>Return to Home</a>
