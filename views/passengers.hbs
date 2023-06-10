@@ -1,80 +1,87 @@
-<h1>Passengers</h1>
-<p>This SELECTs from our Passengers Table</p>
-{{!-- Create a table --}}
-<table>
+<div class="container">
+    <div class="white-box">
+        <h1>Passengers</h1>
+        <p>This SELECTs from our Passengers Table</p>
+        <table>
+            <thead>
 
-    {{!-- Header section --}}
-    <thead>
+                <tr>
+                    {{#each data.[0]}}
+                    <th>
+                        {{@key}}
+                    </th>
+                    {{/each}}
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td>{{this.passengerID}} </td>
+                    <td>{{this.firstName}} </td>
+                    <td>{{this.lastName}} </td>
+                    <td>{{this.flightID}} </td>
+                    <td><button class="delete-button" onclick="deletePassenger({{this.passengerID}})">Delete</button></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <script src="./js/delete_passenger.js"></script>
+    </div>
+</div>
 
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
+<div class="container">
+    <div class="white-box">
+        <h2>Add a passenger</h2>
+        <p>Please enter passenger information to add a passenger</p>
+        <form id="add-passenger-form" method="POST" action="/add-passenger-form">
+            <label for="input-firstName">First Name: </label>
+            <input type="text" name="input-firstName" id="input-firstName">
+            
+            <label for="input-lastName">Last Name: </label>
+            <input type="text" name="input-lastName" id="input-lastName">
+            
+            <br>
+            <label for="flight-select">Select a Flight ID:</label>
+            <select name="flight-select" id="flight-select">
+                <option value=Null>No Flight booked Yet</option>
+                {{#each flights}}
+                    <option value={{this.flightID}}>{{this.flightID}}</option>
+                {{/each}}
+            </select>
 
-    {{!-- Body section --}}
-    <tbody>
+            <br>
+            <button class="button" type="submit">Add Passenger</button>
+        </form>
+    </div>
+</div>
 
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr>
-            <td>{{this.passengerID}} </td>
-            <td>{{this.firstName}} </td>
-            <td>{{this.lastName}} </td>
-            <td>{{this.flightID}} </td>
-            <td><button class="delete-button" onclick="deletePassenger({{this.passengerID}})">Delete</button></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-<script src="./js/delete_passenger.js"></script>
+<div class="container">
+    <div class="white-box">
+        <h2>Updating a Passenger</h2>
+        <p>To update a specific passenger, select them from the drop-down on the left and provide the updated information.</p>
+        <form id="update-passenger-form-ajax">
+            <label for="passenger-select">Select a passenger ID:</label>
+            <select name="passenger-select" id="passenger-select">
+                <option value="passenger-select-blank">Select a Passenger ID</option>
+                {{#each data}}
+                    <option value="{{this.passengerID}}">{{this.passengerID}}</option>
+                {{/each}}
+            </select>
+            <br>
 
-<h2>Add a passenger</h2>
-<p>Please enter passenger information to add a passenger</p>
-<form id="add-passenger-form" method="POST" action="/add-passenger-form">
-    <label for="input-firstName">First Name: </label>
-    <input type="text" name="input-firstName" id="input-firstName">
-    
-    <label for="input-lastName">Last Name: </label>
-    <input type="text" name="input-lastName" id="input-lastName">
+            <label for="input-firstName-update">First Name:</label>
+            <input type="text" name="input-firstName-update" id="input-firstName-update">
 
-    <label for="flight-select">Select a Flight ID:</label>
-    <select name="flight-select" id="flight-select">
-        <option value=Null>No Flight booked Yet</option>
-        {{#each flights}}
-            <option value={{this.flightID}}>{{this.flightID}}</option>
-        {{/each}}
-    </select>
+            <label for="input-lastName-update">Last Name:</label>
+            <input type="text" name="input-lastName-update" id="input-lastName-update">
+            <br>
 
+            <button class="button" type="submit">Update Passenger</button>
+        </form>
 
-    <button type="submit">Add Passenger</button>
-</form>
+        <script src="./js/update_passenger.js"></script>
 
-<h2>Updating a Passenger</h2>
-<p>To update a specific passenger, select it from the drop-down on the left and provide the updated information.</p>
-<form id="update-passenger-form-ajax">
-    <label for="passenger-select">Select a passenger ID:</label>
-    <select name="passenger-select" id="passenger-select">
-        <option value="passenger-select-blank">Select a Passenger ID</option>
-        {{#each data}}
-            <option value="{{this.passengerID}}">{{this.passengerID}}</option>
-        {{/each}}
-    </select>
+    </div>
+</div>
 
-    <label for="input-firstName-update">First Name:</label>
-    <input type="text" name="input-firstName-update" id="input-firstName-update">
-
-    <label for="input-lastName-update">Last Name:</label>
-    <input type="text" name="input-lastName-update" id="input-lastName-update">
-
-    <button type="submit">Update Passenger</button>
-</form>
-
-<script src="./js/update_passenger.js"></script>
-
-<a href='/'>Home</a>
+<a class="nav-button centered-button" href='/'>Return to Home</a>
