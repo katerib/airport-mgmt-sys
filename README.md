@@ -111,13 +111,23 @@ The application assumes a MySQL database is set up and accessible. Have a runnin
 * **Forever script**: ensures application stays running continuously in order to provide enhanced reliability and uptime.
 * **Source Code citations**: Sample code Obtained from the following sources:
 
-Code for general app.js setup to connect to data base and set-up/listen to the server obtained and edited from: https://github.com/osu-cs340-ecampus/nodejs-starter-app
-Code for dynamically displaying data edited from sample code provided here: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
-Code for Adding new data edited from sample code provided here: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
-Code for Deleting Data edited from sample code provided here: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
-Code for Updating data edited from sample code provided here: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
-Code for dynamically filling in drop down menus edit from sample code provided here: https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
+Code for general app.js setup to connect to data base and set-up/listen to the server obtained and edited from: 
+https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
+Code for dynamically displaying data edited from sample code provided here: 
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%204%20-%20Dynamically%20Displaying%20Data
+
+Code for Adding new data edited from sample code provided here: 
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%205%20-%20Adding%20New%20Data
+
+Code for Deleting Data edited from sample code provided here: 
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%207%20-%20Dynamically%20Deleting%20Data
+
+Code for Updating data edited from sample code provided here: 
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%208%20-%20Dynamically%20Updating%20Data
+
+Code for dynamically filling in drop down menus edit from sample code provided here: 
+https://github.com/osu-cs340-ecampus/nodejs-starter-app/tree/main/Step%206%20-%20Dynamically%20Filling%20Dropdowns%20and%20Adding%20a%20Search%20Box
 
 
 ## License
