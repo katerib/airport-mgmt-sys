@@ -111,13 +111,45 @@ app.put('/update-terminal-ajax', function(req,res,next){
 app.get('/gates', function(req, res)
     {  
         let query1 = "SELECT * FROM Gates;";               // Define our query
-
+        let query2 = "SELECT * FROM Terminals;";
+        let query3 = "SELECT * FROM Flights WHERE \`gateID\` IS NULL;"
         db.pool.query(query1, function(error, rows, fields){    // Execute the query
-
-            res.render('gates', {data: rows});                  // Render the gates.hbs file, and also send the renderer
+            let gates = rows
+            db.pool.query(query2, (error, rows, fields) => {
+                let terminals = rows;
+                db.pool.query(query3, (error, rows, fields) => {
+                let flights = rows;
+            return res.render('gates', {data: gates, terminals:terminals, flights:flights});                  // Render the flights.hbs file, and also send the renderer
+            })                                                  // Render the gates.hbs file, and also send the renderer
         })                                                      // an object where 'data' is equal to the 'rows' we
-    });                                                         // received back from the query
+    })
+});                                                         // received back from the query
 
+//Adds a new gate
+app.post('/add-gate-form', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    
+    // Create the query and run it on the database
+    query1 = `INSERT INTO \`Gates\`(\`terminalID\`, \`gateName\`, \`isOpen\`, \`flightID\`, \`flightArrivalTime\`, \`flightDepartureTime\`) VALUES (${data['terminal-select']}, '${data['input-gateName']}',${data['occuiped-select']},${data['flight-select']},'${data['arrival-time']}','${data['departure-time']}')`;                                                                                 
+    db.pool.query(query1, function(error, rows, fields){
+    
+            // Check to see if there was an error
+        if (error) {
+    
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error)
+                res.sendStatus(400);
+            }
+    
+            else
+            {
+                res.redirect('/gates');
+            }
+        })
+    })
+
+// Deletes a gate
 app.delete('/delete-gate-ajax/', function(req,res,next){
     let data = req.body;
     let gateID = parseInt(data.gateID);
@@ -364,6 +396,7 @@ app.get('/active-passengers', function(req, res)
         })                                                      
     });           
 })      
+
 
 
 //Adds a new booked passenger

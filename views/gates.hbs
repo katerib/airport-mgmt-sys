@@ -43,11 +43,36 @@
         <h2>Add a gate</h2>
         <p>Please enter gate information to add a gate to the terminal</p>
         <form id="add-gate-form" method="POST" action="/add-gate-form">
+        <label for="terminal-select">Select a Terminal ID:</label>
+            <select name="terminal-select" id="terminal-select">
+                <option value=Null>Select a Terminal</option>
+                {{#each terminals}}
+                    <option value={{this.terminalID}}>{{this.terminalID}}</option>
+                {{/each}}
+            </select>
             <label for="input-gateName">Gate Name: </label>
             <input type="text" name="input-gateName" id="input-gateName">
-            
-            <label for="input-numGates">Number of Gates: </label>
-            <input type="number" name="input-numGates" id="input-numGates">
+
+            <label for="occuiped-select"></label>
+                <select name="occuiped-select" id="occuiped-select">
+                    <option value=Null>Is the Gate occupied?</option>
+                        <option value=0>Yes</option>
+                        <option value=1>No</option>
+                </select>
+
+            <label for="flight-select">Select a Flight ID with no gate:</label>
+                <select name="flight-select" id="flight-select">
+                    <option value=Null>Select a flight</option>
+                    <option value=Null>All flights already assigned to a gate or no flight ID</option>
+                    {{#each flights}}
+                        <option value={{this.flightID}}>{{this.flightID}}</option>
+                    {{/each}}
+                </select><br>
+            <label for="arrival-time">Select arrival time</label>
+            <input type="datetime-local" id="arrival-time" name="arrival-time" value="">
+
+            <label for="departure-time">Select departure time</label>
+            <input type="datetime-local" id="departure-time" name="departure-time" value="">
 
             <button class="button" type="submit">Add Gate</button>
         </form>
